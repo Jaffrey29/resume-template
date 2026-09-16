@@ -1,6 +1,6 @@
 % !TEX program = xelatex
-% AI Agent 一页简历模板 - 紧凑双实习双项目版
-% 编辑方式：直接替换 \ph{...} 中的占位内容；照片文件名为 photo.jpg。
+% 以最新 Overleaf 截图中的内容为准：紧凑双实习双项目版，照片文件为 photo.jpg。
+% Overleaf 中请将 Compiler 设置为 XeLaTeX，不要使用默认的 pdfLaTeX。
 \documentclass[UTF8,a4paper,9pt]{ctexart}
 
 \usepackage[left=1.15cm,right=1.15cm,top=0.85cm,bottom=0.85cm]{geometry}
@@ -52,8 +52,8 @@
 \end{minipage}
 
 \sectiontitle{教育背景}
-\entry{\ph{学校名称}}{\ph{学位 / 专业；学校标签或排名（可选）}}{\ph{开始时间--结束时间}}
-\entry{\ph{学校名称}}{\ph{学位 / 专业；学校标签或排名（可选）}}{\ph{开始时间--结束时间}}
+\entry{西安建筑科技大学华清学院}{本科 / 计算机科学与技术}{2017.09--2021.07}
+\entry{西澳大利亚大学}{硕士 / 信息技术}{2024.07--2026.12}
 
 \sectiontitle{实习 / 工作经历}
 \entry{\ph{公司一}}{\ph{职位名称}}{\ph{开始时间--结束时间}}
@@ -71,11 +71,12 @@
 \entry{AI Agent 用户抽奖与激励平台}{用户增长与激励系统}{2026.05--2026.08}
 \textbf{技术栈：}Spring Boot、Spring Cloud Alibaba、RabbitMQ、Redis、Canal、XXL-JOB、Vue\par
 \begin{itemize}
-  \item \textbf{项目描述：}为智能体平台打造用户增长与激励系统，引导用户参与 AI Agent 体验，实现用户拉新、留存与促活。包含抽奖、活动、奖品、积分模块，支持抽奖、积分、兑换、返利等服务，以及黑名单校验、N 消耗积分指定抽奖范围、抽奖 N 次解锁奖品等玩法。
-  \item 使用模板方法定义抽奖流程标准，调用责任链完成抽奖前过滤与抽奖；将抽奖中、后的动作抽象为组合模式规则树，实现业务规则动态编排。
-  \item 采用 Redis \texttt{DECR} 分段消费与加锁兜底扣减奖品库存，消费成功后通过异步队列配合定时任务回写数据库，在避免超卖的同时降低数据库压力。
-  \item 使用 RabbitMQ 解耦抽奖发奖、异步行为返利和库存更新流程；构建定时任务异步补偿机制，通过 MQ 重发失败任务，并结合业务唯一键完成幂等校验。
-  \item 使用 OpenFeign、Nacos 与 XXL-JOB 支撑分布式架构；通过 Canal 同步分库分表产生的 Binlog 日志至 Elasticsearch，支持聚合查询。
+  \item \textbf{项目描述：}一个为智能体平台打造的用户增长与激励系统，引导用户参与 AI Agent 体验，实现用户拉新、留存与促活。项目主要包含抽奖、活动、奖品、积分四大模块，提供抽奖、积分、兑换、返利等服务，支持黑名单校验、N 消耗积分指定抽奖范围、抽奖 N 次解锁奖品、积分兑换奖品等玩法。
+  \item \textbf{工作内容：}使用模板方法定义抽奖流程标准，在模板流程中调用责任链完成抽奖前过滤与抽奖；将抽奖中、抽奖后的动作抽象为组合模式规则树，实现业务规则动态编排。
+  \item 针对奖品库存扣减，采用 Redis \texttt{DECR} 分段消费与加锁兜底设计；消费成功的库存通过异步队列配合定时任务回写数据库，在避免超卖的同时降低数据库压力。
+  \item 使用 RabbitMQ 解耦抽奖发奖、异步行为返利等流程；当 Redis 缓存库存消耗完毕后，通过 MQ 推送库存更新消息，并清理延迟队列。
+  \item 构建基于定时任务的异步补偿机制，自动扫描积分支付与返利链路中未成功发放或入账的任务并通过 MQ 重发，结合业务唯一键完成幂等校验。
+  \item 采用分布式架构，使用 OpenFeign 提供服务间接口、Nacos 作为注册中心，并通过 XXL-JOB 调度多机实例任务；使用 Canal 同步分库分表产生的 Binlog 日志至 Elasticsearch，支持聚合查询。
 \end{itemize}
 
 \entry{\ph{项目名称}}{\ph{项目定位 / 一句话简介；项目链接（可选）}}{\ph{开始时间--结束时间}}
