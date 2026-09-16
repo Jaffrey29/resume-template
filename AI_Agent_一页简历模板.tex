@@ -1,87 +1,93 @@
-\documentclass[UTF8,a4paper,10pt,fontset=fandol]{ctexart}
+% !TEX program = xelatex
+% AI Agent 一页简历模板 - 紧凑双实习双项目版
+% 编辑方式：直接替换 \ph{...} 中的占位内容；照片文件名为 photo.jpg。
+\documentclass[UTF8,a4paper,9pt]{ctexart}
 
-\usepackage[left=1.5cm,right=1.5cm,top=1.2cm,bottom=1.2cm]{geometry}
+\usepackage[left=1.15cm,right=1.15cm,top=0.85cm,bottom=0.85cm]{geometry}
+\usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{tabularx}
 \usepackage{xcolor}
 
 \definecolor{navy}{HTML}{17365D}
 \definecolor{placeholder}{HTML}{666666}
+
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=1.3em,label=\textcolor{navy}{\textbullet},nosep,topsep=1pt,itemsep=1pt,parsep=0pt}
+\setlist[itemize]{leftmargin=1.15em,label=\textcolor{navy}{\textbullet},nosep,topsep=0pt,itemsep=0.25pt,parsep=0pt}
 
 \newcommand{\ph}[1]{\textcolor{placeholder}{[#1]}}
 \newcommand{\sectiontitle}[1]{%
-  \vspace{5pt}%
-  {\color{navy}\bfseries\fontsize{12pt}{13pt}\selectfont #1}\par
-  \vspace{1pt}\color{navy}\hrule height 0.7pt\color{black}\vspace{3pt}%
+  \vspace{2.5pt}%
+  {\color{navy}\bfseries\fontsize{10.5pt}{11.5pt}\selectfont #1}\par
+  \vspace{0.5pt}\color{navy}\hrule height 0.55pt\color{black}\vspace{1.5pt}%
 }
 \newcommand{\entry}[3]{%
-  \textbf{\ph{#1}} \textbar{} \ph{#2}\hfill\textbf{\ph{#3}}\par
+  \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1}\enspace\textbar\enspace #2 & \textbf{#3}
+  \end{tabularx}%
 }
 
 \begin{document}
-\fontsize{10pt}{12pt}\selectfont
+\fontsize{9pt}{10.5pt}\selectfont
 
-\begin{center}
-  {\bfseries\fontsize{24pt}{26pt}\selectfont \ph{姓名}}\par
-  \vspace{2pt}
-  {\color{navy}\bfseries\fontsize{11pt}{12pt}\selectfont
-    \ph{目标岗位一} \textbar{} \ph{目标岗位二} \textbar{} \ph{目标岗位三}}\par
-  \vspace{3pt}
-  \ph{手机号 / 即时通讯}\enspace\textbar\enspace
-  \ph{邮箱}\enspace\textbar\enspace
-  \ph{代码仓库链接}\enspace\textbar\enspace
-  \ph{个人主页链接}
-\end{center}
+% ===== 顶部个人信息：照片固定在右侧 =====
+\begin{minipage}[t]{0.84\linewidth}
+  \vspace{0pt}
+  \begin{center}
+    {\bfseries\fontsize{18pt}{20pt}\selectfont 李家傲}\par
+    \vspace{0.5pt}
+    {\color{navy}\bfseries\fontsize{10pt}{11pt}\selectfont Java 后端开发\enspace/\enspace agent 开发}\par
+    \vspace{1.5pt}
+    {\fontsize{8.5pt}{10pt}\selectfont
+    电话：+86 13181304035\enspace\textbar\enspace
+    邮箱：jaffreyli197@gmail.com\enspace\textbar\enspace
+    性别：男\enspace\textbar\enspace年龄：27}
+  \end{center}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.12\linewidth}
+  \vspace{0pt}\centering
+  \includegraphics[width=\linewidth,height=2.75cm,keepaspectratio]{photo.jpg}
+\end{minipage}
 
 \sectiontitle{教育背景}
-\entry{学校名称}{学位 / 专业；学校标签或排名（可选）}{开始时间--结束时间}
-\entry{学校名称}{学位 / 专业；学校标签或排名（可选）}{开始时间--结束时间}
+\entry{\ph{学校名称}}{\ph{学位 / 专业；学校标签或排名（可选）}}{\ph{开始时间--结束时间}}
+\entry{\ph{学校名称}}{\ph{学位 / 专业；学校标签或排名（可选）}}{\ph{开始时间--结束时间}}
 
 \sectiontitle{实习 / 工作经历}
-\entry{公司名称}{职位名称}{开始时间--结束时间}
+\entry{\ph{公司一}}{\ph{职位名称}}{\ph{开始时间--结束时间}}
 \begin{itemize}
   \item \ph{使用“行动 + 技术或方法 + 结果”描述核心职责或成果}
   \item \ph{描述解决的问题、采用的方案，以及可验证的业务或工程影响}
-  \item \ph{补充量化指标、性能数据、效率提升或质量结果}
 \end{itemize}
-\entry{公司名称}{职位名称}{开始时间--结束时间}
+\entry{\ph{公司二}}{\ph{职位名称}}{\ph{开始时间--结束时间}}
 \begin{itemize}
   \item \ph{概括核心工作、关键技术与结果；优先保留与目标岗位相关的内容}
   \item \ph{补充协作范围、复杂问题处理或可靠性改进}
 \end{itemize}
 
 \sectiontitle{项目经历}
-\entry{项目名称}{项目定位 / 一句话简介；项目链接（可选）}{开始时间--结束时间}
-\textbf{技术栈：}\ph{编程语言、框架、数据库、平台与工具}\par
+\entry{AI Agent 用户抽奖与激励平台}{用户增长与激励系统}{2026.05--2026.08}
+\textbf{技术栈：}Spring Boot、Spring Cloud Alibaba、RabbitMQ、Redis、Canal、XXL-JOB、Vue\par
 \begin{itemize}
-  \item \ph{说明项目目标、个人职责与端到端实现范围}
-  \item \ph{描述关键设计、技术难点和解决方案}
-  \item \ph{补充实验结果、性能指标、用户规模或测试结果}
+  \item \textbf{项目描述：}为智能体平台打造用户增长与激励系统，引导用户参与 AI Agent 体验，实现用户拉新、留存与促活。包含抽奖、活动、奖品、积分模块，支持抽奖、积分、兑换、返利等服务，以及黑名单校验、N 消耗积分指定抽奖范围、抽奖 N 次解锁奖品等玩法。
+  \item 使用模板方法定义抽奖流程标准，调用责任链完成抽奖前过滤与抽奖；将抽奖中、后的动作抽象为组合模式规则树，实现业务规则动态编排。
+  \item 采用 Redis \texttt{DECR} 分段消费与加锁兜底扣减奖品库存，消费成功后通过异步队列配合定时任务回写数据库，在避免超卖的同时降低数据库压力。
+  \item 使用 RabbitMQ 解耦抽奖发奖、异步行为返利和库存更新流程；构建定时任务异步补偿机制，通过 MQ 重发失败任务，并结合业务唯一键完成幂等校验。
+  \item 使用 OpenFeign、Nacos 与 XXL-JOB 支撑分布式架构；通过 Canal 同步分库分表产生的 Binlog 日志至 Elasticsearch，支持聚合查询。
 \end{itemize}
-\entry{项目名称}{项目定位 / 一句话简介；项目链接（可选）}{开始时间--结束时间}
+
+\entry{\ph{项目名称}}{\ph{项目定位 / 一句话简介；项目链接（可选）}}{\ph{开始时间--结束时间}}
 \textbf{技术栈：}\ph{编程语言、框架、数据库、平台与工具}\par
 \begin{itemize}
   \item \ph{描述核心功能、架构设计与个人贡献}
   \item \ph{补充质量评估、量化结果或落地效果}
 \end{itemize}
 
-\sectiontitle{开源贡献（可选）}
-\entry{开源项目名称}{语言 / 贡献类型；贡献数量或影响力}{贡献时间}
-\begin{itemize}
-  \item \ph{PR / Issue / Commit 链接：问题、解决方案与验证结果}
-\end{itemize}
-\entry{开源项目名称}{语言 / 贡献类型；贡献数量或影响力}{贡献时间}
-\begin{itemize}
-  \item \ph{PR / Issue / Commit 链接：问题、解决方案与验证结果}
-\end{itemize}
-
 \sectiontitle{专业技能与其他}
-\textbf{专业方向：}\ph{领域知识、核心方法与实践经验}\par
 \textbf{技术能力：}\ph{编程语言、框架、中间件、数据库、云平台与工程工具}\par
-\textbf{语言能力：}\ph{语言及等级 / 证书}\par
-\textbf{奖项证书：}\ph{奖项、证书或其他与岗位相关的信息}
+\textbf{语言能力：}\ph{语言及等级 / 证书}\enspace
+\textbf{奖项证书：}\ph{奖项或证书}
 
 \end{document}
