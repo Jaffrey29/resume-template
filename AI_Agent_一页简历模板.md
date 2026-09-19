@@ -37,12 +37,11 @@ Java 后端开发 / agent 开发
 - 构建基于定时任务的异步补偿机制，自动扫描积分支付与返利链路中未成功发放或入账的任务并通过 MQ 重发，结合业务唯一键完成幂等校验。
 - 采用分布式架构，使用 OpenFeign 提供服务间接口、Nacos 作为注册中心，并通过 XXL-JOB 调度多机实例任务；使用 Canal 同步分库分表产生的 Binlog 日志至 Elasticsearch，支持聚合查询。
 
-### [项目名称]｜[项目定位 / 一句话简介]｜[开始时间--结束时间]
+### 企业级 Agentic RAG 知识问答系统｜企业级智能知识库｜[开始时间--结束时间]
 
-技术栈：[编程语言、框架、数据库、平台与工具]
+技术栈：Spring Boot、Spring AI、Milvus、Lucene、Redis、MySQL、MyBatis-Plus、MinIO、Vue 3、TypeScript
 
-- [描述核心功能、架构设计与个人贡献]
-- [补充质量评估、量化结果或落地效果]
+检索链路：Query Rewrite、混合召回、RRF 倒数秩融合、Cross-Encoder 精排、上下文压缩、Self-Reflection 自检
 
 ## 专业技能与其他
 
