@@ -37,11 +37,21 @@ Java 后端开发 / agent 开发
 - 构建基于定时任务的异步补偿机制，自动扫描积分支付与返利链路中未成功发放或入账的任务并通过 MQ 重发，结合业务唯一键完成幂等校验。
 - 采用分布式架构，使用 OpenFeign 提供服务间接口、Nacos 作为注册中心，并通过 XXL-JOB 调度多机实例任务；使用 Canal 同步分库分表产生的 Binlog 日志至 Elasticsearch，支持聚合查询。
 
+---
+
 ### 企业级 Agentic RAG 知识问答系统｜企业级智能知识库｜[开始时间--结束时间]
 
-技术栈：Spring Boot、Spring AI、Milvus、Lucene、Redis、MySQL、MyBatis-Plus、MinIO、Vue 3、TypeScript
+项目描述：企业级 Agentic RAG 知识问答系统，使用 LLM Agent 替代传统硬编码检索流水线。模型运行时自主分析问题意图，动态编排向量检索、关键词检索、联网搜索、长期记忆等工具组合；答案经 LLM 自检纠错，并可追溯至原始文档章节与页码。系统通过 MCP 协议开放检索能力，支持任意 AI Agent 调用企业知识库。
 
-检索链路：Query Rewrite、混合召回、RRF 倒数秩融合、Cross-Encoder 精排、上下文压缩、Self-Reflection 自检
+核心技术：Spring Boot、Spring AI、Milvus、Lucene、Redis、MySQL、MyBatis-Plus、MinIO、Vue 3、TypeScript
+
+核心职责与贡献：
+
+1. **Agentic RAG 核心引擎：**基于 Spring AI Function Calling 实现 ReAct Agent 决策循环，LLM 根据问题特征实时决定工具、调用次数及是否追加检索，替代传统 if-else 路由；设计 QueryRouter 规则路由作为降级路径，Function Calling 异常时无缝切换，保证检索链路不中断。
+2. **七步检索精炼链路（核心亮点）：** Query Rewrite、混合召回、RRF 倒数秩融合、Cross-Encoder 精排、上下文压缩、Self-Reflection 自检。
+3. **MCP 工具复用架构：**设计 `@Tool` 单实例双轨接入，内部 Agent 通过 Function Calling 调用，外部客户端通过 MCP 协议调用，共享同一组 Bean；设计 `AgentToolContext (ThreadLocal)` 自动收集工具执行结果，工具层无需感知调用来源与上下文参数。
+4. **跨会话长期记忆：**Agent 自动识别用户显式偏好并写入 Redis，后续会话通过 `recall_memory` 工具主动召回，结合用户画像注入 Prompt，实现追问感知与个性化回答。
+5. **全链路容错与热配置：**为各层设计独立降级方案，包括嵌入失败、重排不可用及安全审查失败等场景；所有 RAG 参数与 LLM 模型支持数据库级热切换，运行时生效且无需重启。
 
 ## 专业技能与其他
 
